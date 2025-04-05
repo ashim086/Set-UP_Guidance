@@ -1,0 +1,13 @@
+git config --global --list
+git config --global user.name ""
+for E-mail Same;
+
+git branch -m main
+
+git branch new-branch
+git switch
+
+////short-cut
+git checkout -b branch-2
+
+git reset commit-number;
