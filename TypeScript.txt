@@ -1,0 +1,25 @@
+install typescript
+
+npm install typescript -g
+tsc --version
+initialize file
+
+tsc --init
+compile file:
+tsc
+
+compile in Real Time:=
+tsc watch
+
+tsc --init
+npm i @types/node -D
+npm i tsc-watch
+Inside tsc.config
+outDir "./Build"
+rootDir "./src"
+
+IN-PACKAGEJSON
+script{
+    "start":"nodemon Build/index.js"
+    "dev":"tsc-watch --onSuccess \"npm start\""
+}
