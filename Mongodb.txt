@@ -1,0 +1,30 @@
+mongosh
+
+
+to switch and new create dataBase
+        - use datbaseName
+to show all the datbaseName
+        - show dbs
+db.createCollections collectionName
+
+
+show collections
+
+db.users.insertMany([{}])
+db.users.insertOne({})
+
+to get
+db.users.find()
+db.users.find({name:"Ash"})
+
+//Comparison operation
+db.users.find({age:{$gt:20}})
+db.users.find({age:{$lt:20}})
+db.users.find({age:{$lte:20}})
+db.users.find({age:{$ne:20}})
+
+
+//Filter
+
+
+db.users.find({age:{$ne:20}})

@@ -1,0 +1,11 @@
+npx install prisma
+npx prism init
+
+
+create index.ts file inside prisma file and you will automatically get commands or typeIt manually with
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient();
+
+npm i @prisma/client
+npx prisma generate

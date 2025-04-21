@@ -1,0 +1,27 @@
+
+docker run -it {image-name}
+
+docker container ls
+docker container ls -a
+
+//to start container
+docker start {container-name}
+
+//stop
+docker stop {container-name}
+
+//to interact single command
+docker exec {container-name} {command}
+
+//To continuously interacting with container terminal
+docker exec -it {container-name} bash
+
+
+control d to exit command;
+
+
+//to list out images available locally 
+docker images
+
+//to run container outside locally in computer
+docker run -it -p 2020:2020 {container-name}

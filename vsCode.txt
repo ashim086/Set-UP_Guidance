@@ -1,0 +1,4 @@
+how to select same name in vs code
+
+Select all occurrences of selected word in VSCode
+                -ctrl+shift+L

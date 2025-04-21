@@ -1,0 +1,35 @@
+transforms  : translaX(200px) will gradullay move div 200px with respect tto x axis
+            for other transforms  property we have
+                -translateY,X
+                -RotateZ(360degree),X,Y
+                -Scale(20px) it will increace the size of div initial to 20 px , for X ,Y Scale(X,Y)
+
+
+transition : 2s , it defines how much time should it take to complete the transition 
+                to give particular time for transition first we set name and then time for it 
+            
+            transition : transforms  2s , transform will take total of 2s
+
+
+.sudo{
+
+    transforms : translateX(0px);
+    animation-name : name;
+    animation-duration : 2s (this same as transtion timing but for animations)
+    animation-fill-mode : forwards (defines where the div should after the compliation of animation)
+    animtaio-delay : 2s (defines after what time delay the animation should start )
+    animation-iteration-count : infinite (set count how much should animation take iteration for now it will make infinity loop)
+    animation-direction : noraml,reverse (animation direction set )
+    animtaion-timing-function : ease-in ease-in-out (show the motion of animation)
+}
+@keyFraMes name:{
+
+from {
+    transform: translateX(0px);
+}
+
+to{
+    transform :translateX(220px);
+}
+
+} 
