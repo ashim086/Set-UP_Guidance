@@ -9,3 +9,64 @@ const prisma = new PrismaClient();
 
 npm i @prisma/client
 npx prisma generate
+
+
+//for mongoose
+
+npm install prisma --save-dev
+npx prisma init --datasource-provider mongodb --output ../generated/prisma
+
+2. Model your data in the Prisma schema
+        schema.prisma file:
+            model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  posts Post[]
+}
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+3. Run a migration to create your database tables with Prisma Migrate
+        npx prisma migrate dev --name init for SQL
+        npx prisma db push
+
+4. Explore how to send queries to your database with Prisma Client
+        npm install @prisma/client
+
+
+5.run command touch ./src/lib/prisma.ts 
+        // src/lib/prisma.ts
+import { PrismaClient } from '../../generated/prisma'
+
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
+
+export const prisma =
+    globalForPrisma.prisma ??
+    new PrismaClient({
+        log: ['query'],  // Optional: logs SQL queries for debugging
+    })
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+
+6.use it in controller
+
+import { prisma } from './lib/prisma'
+        
+app.get('/', async (req: Request, res: Response)=> {
+    
+
+    const user = await prisma.user.findMany()
+
+    res.status(200).json({
+        message: "user fetched successfully",
+        user
+    })
+})
