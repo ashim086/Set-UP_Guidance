@@ -1,0 +1,11 @@
+to particularly select the grouping code
+        -first click then clicking shift click upto palce where do you want to select
+
+to cut delete hole bunch of code
+        - control +Backsapce
+
+to copy past same line of code 
+        -shift+alt+arrowButtonUPDown
+
+to select particular bunch of code an change in whole code file
+        -select code using double click and then press  control + D change code therfore
