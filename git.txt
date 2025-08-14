@@ -7,6 +7,15 @@ git branch -m main
 git branch new-branch
 git switch
 
+
+\\get all branches
+git branch -a
+
+
+//get all remote branches
+git branch -r
+
+
 ////short-cut
 git checkout -b branch-2
 

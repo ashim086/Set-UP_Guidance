@@ -25,3 +25,18 @@ docker images
 
 //to run container outside locally in computer
 docker run -it -p 2020:2020 {container-name}
+
+docker run --name my-postgres -e POSTGRES_USER=youruser -e POSTGRES_PASSWORD=yourpassword -e POSTGRES_DB=yourdb -p 5432:5432 -d postgres
+Here’s what each part does:
+
+--name my-postgres: Names the container my-postgres (you can change it).
+
+-e POSTGRES_USER=youruser: Sets the Postgres username.
+
+-e POSTGRES_PASSWORD=yourpassword: Sets the Postgres password.
+
+-e POSTGRES_DB=yourdb: (Optional) Creates a database named yourdb at startup.
+
+-p 5432:5432: Maps the container’s port 5432 to your local port 5432.
+
+-d postgres: Runs in detached mode (-d) using the official Postgres image (postgres).

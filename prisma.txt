@@ -11,7 +11,7 @@ npm i @prisma/client
 npx prisma generate
 
 
-//for mongoose
+//for mongoose/NOSQL
 
 npm install prisma --save-dev
 npx prisma init --datasource-provider mongodb --output ../generated/prisma
