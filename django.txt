@@ -1,0 +1,22 @@
+mkdir backend(projectName) cd backend
+
+#create a isolated virtual environment for project
+python -m venv venv
+
+#activate the virtual environment
+source venv/scripts/activate
+
+@install django
+
+pip install django 
+or python -m pip install django 
+
+# Create your Django project
+django-admin startproject core .
+
+
+# runServer
+python manage.py runserver
+
+#migrate file
+python manage.py migrate
