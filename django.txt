@@ -20,3 +20,23 @@ python manage.py runserver
 
 #migrate file
 python manage.py migrate
+
+
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+After installing any new package:
+
+pip freeze > requirements.txt
+
+
+uvicorn main:app --reload
+
+
+mkdir -p app/{api,schemas,models,db,core,services}
+touch app/main.py
+touch app/api/{__init__.py,items.py}
+touch app/schemas/item.py
+touch app/models/item.py
+touch app/db/session.py
