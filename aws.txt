@@ -184,3 +184,25 @@ ec2-52-212-177-154.eu-west-1.compute.amazonaws.com
 Example:
 
 ssh -i "hostname.pem" ubuntu@ec2-52-212-177-154.eu-west-1.compute.amazonaws.com
+
+-
+  EC2 deployment workflow
+
+  # 1. Start infra (postgres, redis, pgadmin, redis-commander)
+  docker compose up -d
+
+  # 2. Build and start the app container
+  docker compose --profile production up -d --build
+
+  # 3. First time only — seed roles, permissions, demo data
+  docker compose exec app pnpm seed
+
+  # 4. To re-seed anytime (safe — seed is idempotent)
+  docker compose exec app pnpm seed
+
+  Migrations run automatically on every container startup via entrypoint.sh — no manual step needed there.
+
+  ---
+  Note
+
+  You need a docker.env file on the EC2 instance (the app service reads env_file: docker.env). Copy .env.example and fill in the real values before running.
