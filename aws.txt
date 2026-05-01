@@ -184,7 +184,7 @@ ec2-52-212-177-154.eu-west-1.compute.amazonaws.com
 Example:
 
 ssh -i "hostname.pem" ubuntu@ec2-52-212-177-154.eu-west-1.compute.amazonaws.com
-
+docker compose --profile production up -d --build
 -
   EC2 deployment workflow
 
@@ -206,3 +206,105 @@ ssh -i "hostname.pem" ubuntu@ec2-52-212-177-154.eu-west-1.compute.amazonaws.com
   Note
 
   You need a docker.env file on the EC2 instance (the app service reads env_file: docker.env). Copy .env.example and fill in the real values before running.
+
+
+🚀 AWS EC2 Deployment Workflow
+🟢 1. Connect to AWS EC2 Server
+
+First go to folder where your .pem key exists:
+
+cd /path/to/pem-file
+
+Then connect:
+
+ssh -i "hostname.pem" ubuntu@ec2-52-212-177-154.eu-west-1.compute.amazonaws.com
+🟢 2. Open Project Folder
+
+If needed:
+
+cd /var/www/AEORanker
+
+See all files:
+
+ls -a
+🟢 3. Check Docker Containers Running
+sudo docker ps
+🟢 4. Check App Logs
+
+Use actual container name first:
+
+sudo docker ps
+
+Then logs:
+
+sudo docker logs aeoranker-app-1
+
+Live logs:
+
+sudo docker logs -f aeoranker-app-1
+
+⚠️ sudo docker logs app only works if container is literally named app.
+
+🟢 5. Pull Latest Code
+git pull origin main
+🟢 6. Rebuild + Restart Docker App
+sudo docker compose --profile production up -d --build
+
+This:
+
+✔ rebuilds image
+✔ updates code
+✔ restarts services
+✔ keeps DB volumes safe
+
+🟢 7. Verify After Deploy
+sudo docker ps
+sudo docker logs aeoranker-app-1
+🟢 8. Nginx Config File
+
+Edit:
+
+sudo nano /etc/nginx/sites-available/default
+🟢 9. Test Nginx Config
+sudo nginx -t
+🟢 10. Reload Nginx
+sudo systemctl reload nginx
+
+Restart fully if needed:
+
+sudo systemctl restart nginx
+🟢 11. Check Public IP
+
+Correct command:
+
+curl ifconfig.me
+
+(You wrote iconfig.me, typo)
+
+Alternative:
+
+curl ipinfo.io/ip
+🟢 12. Test Domain / DNS
+curl https://yourdomain.com
+
+or:
+
+nslookup yourdomain.com
+🔥 Best Routine When Site Breaks
+ssh ...
+cd /var/www/AEORanker
+git pull
+sudo docker compose --profile production up -d --build
+sudo docker ps
+sudo docker logs -f aeoranker-app-1
+🟢 Important Correction
+
+Use:
+
+sudo docker logs aeoranker-app-1
+
+Not:
+
+sudo docker logs app
+
+Unless custom container name set.
